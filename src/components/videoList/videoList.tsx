@@ -1,18 +1,16 @@
 import VideoCard from "../videoCard/VideoCard";
-import { useAppSelector } from "../../utils/hooks/reduxHook";
 
 type Props = {
   title: string;
+  videoData: Array<object>;
 };
 
-const VideoList = ({ title = "Section Title" }: Props) => {
-  const data = useAppSelector((state) => state.videoList);
-
+const VideoList = ({ title = "Section Title", videoData = [] }: Props) => {
   return (
     <div className="video-list-wrap font-bold">
       <h4 className="text-left">{title}</h4>
       <div className="flex flex-wrap gap-1 justify-between">
-        {data?.videos?.map((video) => {
+        {videoData?.map((video) => {
           return (
             <VideoCard
               img={video?.snippet?.thumbnails?.medium?.url}
@@ -21,8 +19,8 @@ const VideoList = ({ title = "Section Title" }: Props) => {
               chnlName={video?.snippet?.channelTitle}
               views={video?.statistics?.viewCount}
               time={video?.snippet?.publishedAt}
-              key={video?.id}
-              id={video?.id}
+              key={video?.id?.videoId ? video?.id?.videoId : video?.id}
+              id={video?.id?.videoId ? video?.id?.videoId : video?.id}
             />
           );
         })}

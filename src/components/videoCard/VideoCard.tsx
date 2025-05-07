@@ -44,7 +44,7 @@ const VideoCard = ({
           </div>
           <p className="text-left px-2 text-[12px] ">{chnlName}</p>
           <div className="text-left px-2 text-[12px] ">
-            <span>{viewCountConversion(views)} views</span>
+            {views && <span>{viewCountConversion(views)} views</span>}
             <span> {time} ago</span>
           </div>
         </div>

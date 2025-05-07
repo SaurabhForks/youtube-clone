@@ -7,7 +7,8 @@ import ButtonList from "../buttonList/ButtonList";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => state.appConfig.sideBarToggle);
+  const state = useAppSelector((state) => state.videoList);
+
   const fetchYoutubeData = async () => {
     const res = await fetch(YOUTUBE_GET_TOP_TRENDING);
     const data = await res.json();
@@ -21,7 +22,7 @@ const Home = () => {
   return (
     <>
       <ButtonList />
-      <VideoList title="Trending" />
+      <VideoList title="Trending" videoData={state?.videos} />
     </>
   );
 };
