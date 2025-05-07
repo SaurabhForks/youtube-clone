@@ -4,29 +4,29 @@ import { FaSearch } from "react-icons/fa";
 import { GOOGLE_SUGGEST_API } from "../../utils/constants/urls";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks/reduxHook";
 import { setCache } from "../../redux/slices/searchCache";
+import { useNavigate } from "react-router";
 
-type Props = {};
-
-const Search = (props: Props) => {
+const Search = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [suggestion, setSuggestion] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => state.searchCache);
-  console.log(state);
+
+  const state: unknown = useAppSelector((state) => state.searchCache);
 
   const handleSearch = async () => {
-    const data = await fetch(GOOGLE_SUGGEST_API + searchInput);
-    const result = await data.json();
-    setSearchResult(result[1]);
     if (searchInput) {
+      const data = await fetch(GOOGLE_SUGGEST_API + searchInput);
+      const result = await data.json();
+      setSearchResult(result[1]);
       dispatch(setCache({ [searchInput]: result[1] }));
     }
   };
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (state.results[searchInput]) {
+      if (state?.results[searchInput]) {
         setSearchResult(state.results[searchInput]);
       } else {
         handleSearch();
@@ -35,8 +35,10 @@ const Search = (props: Props) => {
     return () => clearTimeout(timer);
   }, [searchInput]);
 
-  const handleVideoSearch = (value: string) => {
-    console.log(value);
+  const handleInputBlur = () => {
+    setTimeout(() => {
+      setSuggestion(false);
+    }, 200);
   };
   return (
     <div className="search-wrap w-[50%] flex items-center relative">
@@ -47,9 +49,17 @@ const Search = (props: Props) => {
         onChange={(e) => setSearchInput(e.target.value)}
         value={searchInput}
         onFocus={() => setSuggestion(true)}
-        onBlur={() => setSuggestion(false)}
+        onBlur={handleInputBlur}
       />
-      <button className="search-button rounded-r-full" onClick={handleSearch}>
+      <button
+        className="search-button rounded-r-full"
+        onClick={() => {
+          if (searchInput) {
+            navigate("/search/" + searchInput);
+            setSearchInput("");
+          }
+        }}
+      >
         <FaSearch color="#fff" />
       </button>
       {suggestion && (
@@ -58,7 +68,7 @@ const Search = (props: Props) => {
             <li
               className="text-left p-2 hover:bg-gray-200 cursor-pointer"
               key={item}
-              onClick={() => handleVideoSearch(item)}
+              onClick={() => navigate("/search/" + item)}
             >
               {item}
             </li>

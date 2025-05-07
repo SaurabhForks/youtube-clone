@@ -3,6 +3,7 @@ import "./Header.scss";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks/reduxHook";
 import { toggleSidebar } from "../../redux/slices/appConfigSlice";
 import Search from "./Search";
+import { Link } from "react-router";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -19,10 +20,13 @@ const Header = () => {
             color="#fff"
             onClick={handleSideToggel}
           />
-          <div className="logo flex align-center text-white items-center pl-1">
+          <Link
+            to="/"
+            className="logo flex align-center text-white items-center pl-1"
+          >
             <FaYoutube color="red" size={"50px"} />
             <span className="font-bold text-2xl pl-1">YouTube</span>
-          </div>
+          </Link>
         </div>
         <Search />
 

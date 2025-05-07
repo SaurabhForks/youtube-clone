@@ -1,4 +1,7 @@
 export const viewCountConversion = (viewCount: string) => {
+  if (!viewCount) {
+    return 0;
+  }
   if (viewCount.length <= 3) {
     return viewCount;
   }
