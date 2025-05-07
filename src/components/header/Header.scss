@@ -1,0 +1,15 @@
+.header-warp {
+  background-color: #000;
+  .input-box {
+    border: 1px solid #343232;
+    padding: 10px 15px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .search-button {
+    border: 1px solid #343232;
+    padding: 14px;
+    cursor: pointer;
+  }
+}
