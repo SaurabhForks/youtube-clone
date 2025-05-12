@@ -12,7 +12,7 @@ const Header = () => {
     dispatch(toggleSidebar(!sideBarToggle));
   };
   return (
-    <div className="header-warp py-2 fixed top-0 w-[100%] bg-black">
+    <div className="header-warp py-2 fixed top-0 w-[100%] bg-black z-1">
       <div className=" flex justify-between items-center container">
         <div className="logo-wrap flex items-center  w-[20%]">
           <FaHamburger

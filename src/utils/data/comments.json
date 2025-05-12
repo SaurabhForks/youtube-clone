@@ -1,0 +1,59 @@
+[
+    {
+        "name": "Rahul",
+        "text": "Initial comment here.",
+        "reply": {
+            "name": "Prakash",
+            "text": "Responding to UserA.",
+            "reply": {
+                "name": "Sid",
+                "text": "Another level of response.",
+                "reply": {
+                    "name": "Karan",
+                    "text": "Continuing the thread.",
+                    "reply": {
+                        "name": "Ema",
+                        "text": "Nearing the limit.",
+                        "reply": {
+                            "name": "Love",
+                            "text": "Sixth level of nesting!",
+                            "reply": null
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "name": "AnotherUser",
+        "text": "A separate comment.",
+        "reply": null
+    },
+    {
+        "name": "CuriousCat",
+        "text": "I'm really enjoying this discussion!",
+        "reply": {
+            "name": "ThoughtfulOne",
+            "text": "Me too! It's great to see so many different viewpoints.",
+            "reply": null
+        }
+    },
+    {
+        "name": "TechEnthusiast",
+        "text": "Has anyone tried implementing this with the latest API?",
+        "reply": {
+            "name": "CodeGuru",
+            "text": "I have! Ran into a few minor issues, but overall it works well.",
+            "reply": {
+                "name": "TechEnthusiast",
+                "text": "Oh, interesting! Could you share more details about the issues you encountered?",
+                "reply": null
+            }
+        }
+    },
+    {
+        "name": "FoodLover",
+        "text": "This reminds me of a delicious recipe I tried recently.",
+        "reply": null
+    }
+]
